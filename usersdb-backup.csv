@@ -1,0 +1,9 @@
+User_id,Login,Cryptographic_Password,Access_count
+1,abc@abc.com,abc,2
+2,bbb@abc.com,bbb,3
+11,qqqqq@ewrerw.com,MODE,0
+12,qqqqq@ewrerw.com,MODE,0
+19,qwe@qwe.com,CTLMH,0
+20,mabj@gmail.com,CTIF,31
+21,mabj@gmail.com,CTIF,0
+22,admin@rentingapp.com,TECSG,0
