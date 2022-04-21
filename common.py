@@ -32,6 +32,8 @@ def chose_report():
           "(3) Report 3  \n")
 
 
+
+
 def get_connection():
     connection = pyodbc.connect('Driver={SQL Server};'
                                 'Server = DESKTOP-KSAT5NM\\RTSQL;'

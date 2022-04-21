@@ -302,13 +302,14 @@ def add_new_rent_profile():
     rent_apart_id = input("Please enter Tenant's Apartment Id: ")
     rent_rent_period = input("Please enter Rent Period: ")
     rent_price = input("Please enter Price: ")
+    rent_startdate = input("Please enter Rent Start Date: ")
     connection = pyodbc.connect('Driver={SQL Server};'
                                 'Server=DESKTOP-KSAT5NM\RTSQL;'
                                 'Database=Rent1;'
                                 'Trusted_Connection=yes;')
     cursor = connection.cursor()
-    sql_query_master = "Insert into Rent_Profiles (TenantId, ApartmentId, RentPeriod, Price) VALUES(\'{0}\',\'{1}\',\'{2}\',\'{3}\')".format(
-        rent_tenant_id, rent_apart_id, rent_rent_period, rent_price)
+    sql_query_master = "Insert into Rent_Profiles (TenantId, ApartmentId, RentPeriod, Price, RentStartDate) VALUES(\'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\')".format(
+        rent_tenant_id, rent_apart_id, rent_rent_period, rent_price, rent_startdate)
     cursor.execute(sql_query_master)
     connection.commit()
     cursor.execute("SELECT @@IDENTITY AS ID;")
@@ -330,7 +331,7 @@ def update_rent_profile():
                                 'Database=Rent1;'
                                 'Trusted_Connection=yes;')
     cursor = connection.cursor()
-    sql_query_master = "Update Rent_Profiles set TenantId = \'{0}\', ApartmentId =\'{1}\', RentPeriod = \'{2}\', Price = \'{3}\'" \
+    sql_query_master = "Update Rent_Profiles set TenantId = \'{0}\', ApartmentId =\'{1}\', RentPeriod = \'{2}\', Price = \'{3}\', RentStartDate = \'{3}\'" \
                        " where Id = \'{4}\'".format(rent_tenant_id, rent_apart_id, rent_rent_period, rent_price,
                                                     rent_id)
     cursor.execute(sql_query_master)
