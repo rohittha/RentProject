@@ -1,4 +1,4 @@
 ,ApartmentNumber,BuildingAddress,RentStartDate,RentEndDate,RentStatus
-0,311,84 Glen Lake Kithcner ON,"May 01, 20","Mar 01, 20",Vacant
-1,222,22 Spruce Waterloo ON,"May 01, 20","Aug 01, 20",Occupied
-2,221,22 Spruce Waterloo ON,"May 01, 20","Mar 01, 20",Vacant
+0,311,84 Glen Lake Kithcner ON,"May 01, 20","Apr 01, 20",Vacant
+1,222,22 Spruce Waterloo ON,"Apr 01, 20","Jul 01, 20",Occupied
+2,221,22 Spruce Waterloo ON,"May 01, 20","Apr 01, 20",Vacant
