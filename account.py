@@ -8,6 +8,7 @@ import sys
 
 # This function is used to take decision based on user input
 import home
+import pyodbc
 
 
 def users_input():
@@ -45,8 +46,34 @@ def select_user_type():
 # This function creates a new user in the database
 def create_user(username, password, is_admin):
     print("Creating New User..")
-    connection = sqlite3.connect("User.db")
+    '''
+    connection = pyodbc.connect('Driver={SQL Server};'
+                              'Server=DESKTOP-KSAT5NM\RTSQL;'
+                              'Database=Rent1;'
+                              'Trusted_Connection=yes;')
+    '''
+    #connection = pyodbc.connect('Driver={SQL Server};'  'Server = DESKTOP-KSAT5NM\\RTSQL;'  'Database = Rent1;'
+    # 'Trusted_Connection=yes;')
+
+    Driver_Name ='SQL Server'
+    Server_Name = 'DESKTOP-KSAT5NM\\RTSQL'
+    Database_Name = 'Rent1'
+
+    connection_string = f"""
+        DRIVER={{{Driver_Name}}};
+        SERVER = {Server_Name};
+        DATABASE = {Database_Name};
+        Trust_Connection= yes;   
+    """
+    #conn = odbc.connect(connection_string)
+
+    connection = pyodbc.connect('Driver={SQL Server};'
+                          'Server=DESKTOP-KSAT5NM\RTSQL;'
+                          'Database=Rent1;'
+                          'Trusted_Connection=yes;')
+    #conn = common.get_connection()
     cursor = connection.cursor()
+
     sql_query = "Insert into TB_USER (Login, Cryptographic_Password, ACCESS_COUNT, IsAdmin) " \
                 "VALUES('" + username + "','" + password + "',0," + str(is_admin) + ")"
     cursor.execute(sql_query)
@@ -58,12 +85,21 @@ def create_user(username, password, is_admin):
 def login_user(username, password):
     try:
         print("Searching user account..")
-        connection = sqlite3.connect("User.db")
+        '''
+        connection = pyodbc.connect('Driver={SQL Server};'
+                              'Server=DESKTOP-KSAT5NM\RTSQL;'
+                              'Database=Rent1;'
+                              'Trusted_Connection=yes;')
+        '''
+        connection = pyodbc.connect('Driver={SQL Server};'
+                              'Server=DESKTOP-KSAT5NM\RTSQL;'
+                              'Database=Rent1;'
+                              'Trusted_Connection=yes;')
 
         cursor = connection.cursor()
-        sql_query = "select * from TB_USER where Login = '" + username + \
-                    "' and Cryptographic_Password = '" + password + "'"
-        cursor.execute(sql_query)
+        sql_query = f"select * from TB_USER where Login = ? and Cryptographic_Password = ?"
+        # f"' and Cryptographic_Password = '" + password + "'"
+        cursor.execute(sql_query, (username, password))
         results = cursor.fetchall()
         if not results:
             print("Result not found")
@@ -87,7 +123,10 @@ def login_user(username, password):
 def update_user_access_count(username, access_count):
     try:
         print("Updating user access count..")
-        connection = sqlite3.connect("User.db")
+        connection = pyodbc.connect('Driver={SQL Server};'
+                              'Server=DESKTOP-KSAT5NM\RTSQL;'
+                              'Database=Rent1;'
+                              'Trusted_Connection=yes;')
         access_count += 1
         cursor = connection.cursor()
         sql_query = "update TB_USER set ACCESS_COUNT=" + str(access_count) + " where Login = '" + username + "'"

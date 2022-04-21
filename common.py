@@ -1,8 +1,6 @@
-
 # Return the selected value
 import sqlite3
-
-import account
+import pyodbc
 
 
 def select_from_options(minimum, maximum):
@@ -25,3 +23,18 @@ def chose_operation():
     print("(1) Create New User \n"
           "(2) Login Existing User \n"
           "(3) Quit Application \n")
+
+
+def chose_report():
+    print("************************************************\n")
+    print("(1) Report 1 \n"
+          "(2) Report 2  \n"
+          "(3) Report 3  \n")
+
+
+def get_connection():
+    connection = pyodbc.connect('Driver={SQL Server};'
+                                'Server = DESKTOP-KSAT5NM\\RTSQL;'
+                                'Database = Rent1;'
+                                'Trusted_Connection=yes;')
+    return connection
