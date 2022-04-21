@@ -52,7 +52,7 @@ def GetRentalPayments():
     dataframe_results = pandas.read_sql_query(sqlquery, connection)
     pandas.set_option("display.max_rows", None, "display.max_columns", None)
     print(dataframe_results)
-    dataframe_results.to_csv("RentalPaymentsReport.csv")
+    dataframe_results.to_csv("Report2_RentalPayments.csv")
     # cursor.execute(sql_query_master)
     # connection.commit()
     input("Press any key to continue..")
@@ -66,7 +66,7 @@ def Report3():
                                 'Database=Rent1;'
                                 'Trusted_Connection=yes;')
     cursor = connection.cursor()
-    sqlquery = "EXEC USP_GetRentalUnitStatus"
+    sqlquery = "EXEC USP_GetReport3"
     dataframe_results = pandas.read_sql_query(sqlquery, connection)
     pandas.set_option("display.max_rows", None, "display.max_columns", None)
     print(dataframe_results)
